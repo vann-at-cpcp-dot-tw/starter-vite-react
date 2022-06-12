@@ -32,7 +32,7 @@ const { LayoutGeneral, Lightbox, LightboxClose } = components
 function __Sample(props, ref){
   const store = useStore()
   const [state, setState] = useReducer((state, updateState)=>({...state, ...updateState}), {
-
+    // init state
   })
 
   return (<Suspense fallback={null}>
