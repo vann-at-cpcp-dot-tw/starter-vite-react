@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useRef, useReducer, useEffect, useMemo, useCallback } from 'react'
+import React, { Suspense, lazy, forwardRef, useState, useRef, useReducer, useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 // routes
@@ -29,7 +29,7 @@ const { LayoutGeneral, Lightbox, LightboxClose } = components
 //   bar: PropTypes.string,
 // }
 
-function __Sample(){
+function __Sample(props, ref){
   const store = useStore()
 
   return (<Suspense fallback={null}>
