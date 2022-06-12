@@ -1,18 +1,19 @@
 import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
 
 // routes
-import { BrowserRouter, Routes, routes, RouteWithSubRoutes } from '@src/routes'
+import { BrowserRouter, Routes, routes, useRoutes } from '@src/routes'
 
-export default function App(){
+function RoutesNodes(){
+  const routeNodes = useRoutes(routes)
+  return routeNodes
+}
+
+function App(){
   return (
     <BrowserRouter>
-      <Routes>
-        {
-          routes.map((route, index)=>{
-            return RouteWithSubRoutes(route, index)
-          })
-        }
-      </Routes>
+      <RoutesNodes />
     </BrowserRouter>
   )
 }
+
+export default App

@@ -24,7 +24,7 @@ export default function Index(){
   const srcAssets = useSrcAssets(['@src/assets/img/logo.png'])
   const store = useStore()
 
-  return (<Suspense fallback={null}>
+  return (<Suspense fallback={<>333333333333333333333333</>}>
     <LayoutGeneral>
 
       <Lightbox id="helloLightbox">

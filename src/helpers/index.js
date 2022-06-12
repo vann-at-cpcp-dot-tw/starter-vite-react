@@ -56,7 +56,7 @@ export const numberWithCommas = function(x, digits = 0){
   var size = Math.pow(10, digits)
   x = Math.round(x * size) / size
   if( digits != 0 ){
-    if( String(x).split('.').length == 1 ){ //整數
+    if( String(x).split('.').length == 1 ){ // 整數
       x = Number.parseFloat(x).toFixed(2)
     }
   }
@@ -86,22 +86,22 @@ export const numberWithKMB = function(num, digits){
   return parseFloat(num).toFixed(digits) + si[i].symbol
 }
 
-//帶小數的四捨五入，第一參數：整數或浮點數，第二參數：小數位數
+// 帶小數的四捨五入，第一參數：整數或浮點數，第二參數：小數位數
 export const  roundDecimal = function(val, precision=0){
   return Math.round(Math.round(val * Math.pow(10, (precision || 0) + 1)) / 10) / Math.pow(10, (precision || 0))
 }
 
-//取隨機數
+// 取隨機數
 export const rand = function(min, max){
   return Math.floor( Math.random() * (max - min + 1) ) + min
 }
 
-//創建陣列(可調增幅)
+// 創建陣列(可調增幅)
 export const arrayGenerate = function(start, end, step=1){
   return Array.from(Array.from(Array(Math.ceil((end+1-start)/step)).keys()), x=>start+ x*step)
 }
 
-//打亂陣列
+// 打亂陣列
 export const arrayShuffle = function(a){
   for (let i = a.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * (i + 1))
@@ -109,14 +109,14 @@ export const arrayShuffle = function(a){
   }
   return a
 }
-//產生一組不重複隨機數，需要打亂陣列和創建陣列
+// 產生一組不重複隨機數，需要打亂陣列和創建陣列
 export const arrayRandom = function({min=0, max=2, length=2, step=1} = {min:0, max:2, length:2, step:1}){
   let arry = this.arrayGenerate(min, max, step)
   this.arrayShuffle(arry)
   return arry.slice(0, length)
 }
 
-//array chunk
+// array chunk
 export const arrayChunk = function(myArray, chunk_size){
   var index = 0
   var arrayLength = myArray.length
@@ -130,7 +130,7 @@ export const arrayChunk = function(myArray, chunk_size){
   return tempArray
 }
 
-//取得小數點位數
+// 取得小數點位數
 export const getDecimalPlace = function(num){
   if( num!==undefined && !isNaN(num) ){
     var sep = String(23.32).match(/\D/)[0]
@@ -139,7 +139,7 @@ export const getDecimalPlace = function(num){
   }
 }
 
-//滾動到特定 el
+// 滾動到特定 el
 export const scrollToSection = function({el, speed=800, offset=0, callback=function(){}}){
 
   if( $(el).length>0 ){
@@ -151,7 +151,7 @@ export const scrollToSection = function({el, speed=800, offset=0, callback=funct
   }
 }
 
-//取得 el 在螢幕上的％數
+// 取得 el 在螢幕上的％數
 export const getItemPositionInViewport = function({el, based='top'}){
   if( $(el).length>0 ){
     switch(based){
@@ -165,13 +165,13 @@ export const getItemPositionInViewport = function({el, based='top'}){
   }
 }
 
-//補 0
+// 補 0
 export const padLeft = function(n, width, z){
   z = z || '0'
   n = n + ''
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n
 
-  //how to use
+  // how to use
   // pad(10, 4);      // 0010
   // pad(9, 4);       // 0009
   // pad(123, 4);     // 0123
@@ -212,6 +212,20 @@ export const strWidth = function(text='', fontCssProps = '1rem'){
   const width = dom.width()
   dom.remove()
   return width
+}
+
+export const toCamelCase = function(str='', breakKey='-', upperCamelCase=false){
+  const re = new RegExp(`${breakKey}(\\w)`, 'g')
+
+  str = str.replace(re, function($0, $1){
+    return $1.toUpperCase()
+  })
+
+  if( upperCamelCase ){
+    str = `${str[0].toUpperCase()}${str.slice(1)}`
+  }
+
+  return str
 }
 
 export const publicUrl = function(path=''){

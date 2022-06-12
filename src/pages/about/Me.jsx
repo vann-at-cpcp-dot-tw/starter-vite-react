@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
+import React, { Suspense, lazy, useState, useRef, useReducer, useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 // routes
@@ -6,6 +6,7 @@ import { routes, Link  } from '@src/routes'
 
 // store
 import { useStore } from '@src/store'
+import useSrcAssets from '@src/use/useSrcAssets'
 
 // use
 import { useWindowSize } from 'react-use'
@@ -17,14 +18,16 @@ import { isEmpty } from '@src/helpers'
 // styles
 import styles from '@src/components/styles/index.module.sass'
 
-const { Lightbox } = components
+const { LayoutGeneral, Lightbox, LightboxClose } = components
 
-function Footer(){
+function Me(){
+  const store = useStore()
+
   return (<Suspense fallback={null}>
-    <div className="py-4">
-      <div className="text-center">This is Footer</div>
+    <div className="text-center">
+      This is About Me page.
     </div>
   </Suspense>)
 }
 
-export default Footer
+export default Me

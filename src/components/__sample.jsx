@@ -20,14 +20,16 @@ import styles from '@src/components/styles/index.module.sass'
 
 const { LayoutGeneral, Lightbox, LightboxClose } = components
 
-Sample.propTypes = {
-  ratio: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-}
+// Sample.propTypes = {
+//   // https://github.com/facebook/prop-types
+//   foo: PropTypes.oneOfType([
+//     PropTypes.string,
+//     PropTypes.number,
+//   ]),
+//   bar: PropTypes.string,
+// }
 
-function Sample(){
+function __Sample(){
   const store = useStore()
 
   return (<Suspense fallback={null}>
@@ -35,4 +37,4 @@ function Sample(){
   </Suspense>)
 }
 
-export default Sample
+export default __Sample

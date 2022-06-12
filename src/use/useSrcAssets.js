@@ -2,13 +2,16 @@ import React, { Suspense, lazy, useState, useRef, useReducer, useEffect, useMemo
 
 export default function(QueueToBeResolved = []){
 
-  const srcAssetsModules = import.meta.glob('@src/assets/**')
-  const srcAssets =  {}
-
-  for (const path in srcAssetsModules){
-    const assetName = `@src/assets/${path.split('assets/')[1]}`
-    srcAssets[assetName] = srcAssetsModules[/* @vite-ignore */ `${path}`]
-  }
+  const modules = import.meta.glob('@src/assets/**')
+  const srcAssets =  Object.entries(modules || {}).reduce((acc, entry, index)=>{
+    const path = entry[0]
+    const importFunc = entry[1]
+    const name = `@src/assets/${path.split('assets/')[1]}`
+    return {
+      ...acc,
+      [name]: importFunc
+    }
+  }, {})
 
   const [assetsState, commit] = useReducer((state, action)=>{
     if( action.path && action.result ){

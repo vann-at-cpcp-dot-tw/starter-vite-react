@@ -1,11 +1,12 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
+import React, { Suspense, lazy, useState, useRef, useReducer, useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 // routes
-import { routes, Link  } from '@src/routes'
+import { routes, Link, Outlet  } from '@src/routes'
 
 // store
 import { useStore } from '@src/store'
+import useSrcAssets from '@src/use/useSrcAssets'
 
 // use
 import { useWindowSize } from 'react-use'
@@ -17,23 +18,24 @@ import { isEmpty } from '@src/helpers'
 // styles
 import styles from '@src/components/styles/index.module.sass'
 
-const { Lightbox } = components
+const { LayoutGeneral, Lightbox, LightboxClose } = components
 
+function About(){
+  const store = useStore()
 
-function Header(){
   return (<Suspense fallback={null}>
-    <header className="py-4">
-      <div className="text-center">This is Header</div>
+    <LayoutGeneral>
       <div className="row justify-center">
         <div className="col-auto">
-          <Link to="/">Home</Link>
+          <Link to="/about/me">Me</Link>
         </div>
         <div className="col-auto">
-          <Link to="/about">ABOUT</Link>
+          <Link to="/about/Company">Company</Link>
         </div>
       </div>
-    </header>
+      <Outlet />
+    </LayoutGeneral>
   </Suspense>)
 }
 
-export default Header
+export default About
