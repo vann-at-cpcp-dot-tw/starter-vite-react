@@ -37,6 +37,7 @@ function __Sample(props, ref){
   const [searchParams, setSearchParams] = useSearchParams()
   const queryObject = useMemo(()=>Object.fromEntries([...searchParams]), [Object.values(Object.fromEntries([...searchParams])).join(',')])
   const navigate = useNavigate()
+  const location = useLocation()
   const [{ route }] = matchRoutes(routes, location)
   const [state, setState] = useReducer((state, updateState)=>({...state, ...updateState}), {
     // init state
