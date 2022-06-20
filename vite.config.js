@@ -35,9 +35,11 @@ export default defineConfig(({ mode })=>{
   const ENV = loadEnv(mode, process.cwd(), '')
 
   return {
+    base: ENV.APP_BASE || '/',
     define: {
       // 字串要包 ""，參考：https://cn.vitejs.dev/config/#define
-      // VITE_APP_URL: `"${ENV.APP_URL}"`,
+      VITE_API_BASE: `"${ENV.API_BASE || ENV.APP_BASE || '/'}"`,
+      VITE_APP_BASE: `"${ENV.APP_BASE || '/'}"`
     },
     plugins: [
       react(),
@@ -52,7 +54,7 @@ export default defineConfig(({ mode })=>{
     css: {
       preprocessorOptions: {
         sass: {
-          // additionalData: `$PUBLIC_URL: "${PUBLIC_URL}" \n`
+          additionalData: `$VITE_APP_BASE: "${ENV.APP_BASE || '/'}" \n`
         }
       },
       //  requireModuleExtension: true
@@ -65,15 +67,17 @@ export default defineConfig(({ mode })=>{
       target: 'es2015',
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name]-[hash].[ext]',
-          chunkFileNames: 'chunks/[name]-[hash].js',
-          entryFileNames: 'entrances/[name]-[hash].js'
+          // assetFileNames: 'assets/[name]-[hash].[ext]',
+          // chunkFileNames: 'chunks/[name]-[hash].js',
+          // entryFileNames: 'entrances/[name]-[hash].js',
+          assetFileNames: 'assets/[name].[ext]',
+          chunkFileNames: 'chunks/[name].js',
+          entryFileNames: 'entrances/[name].js',
         }
       }
     },
     resolve: {
       alias: {
-        // vue: 'vue/dist/vue.esm-bundler.js',
         '@src': path.resolve(__dirname, './src'),
       }
     }

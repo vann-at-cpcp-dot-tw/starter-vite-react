@@ -10,7 +10,7 @@ function RoutesNodes(){
 
 function App(){
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={VITE_APP_BASE}>
       <RoutesNodes />
     </BrowserRouter>
   )
