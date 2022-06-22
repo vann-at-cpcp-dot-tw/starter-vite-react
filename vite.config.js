@@ -9,8 +9,9 @@
  * public 資料夾預設是 <root>/public，但可以通過 publicDir 選項 來配置。
 
  * 請注意：
- * 引入 public 中的資源永遠應該使用根絕對路徑，舉個例子，public/icon.png 應該在源碼中被引用為 /icon.png。
  * public 中的資源不應該被 JavaScript 文件引用。
+ * 引入 public 中的資源永遠應該使用根絕對路徑，舉個例子，public/icon.png 應該在源碼中被引用為 /icon.png。
+ * 注意：如果網站有自定義 ASSETS_BASE，那麼所有引用資源（如圖片）不能以 / 開頭，編譯後 vite 會自動幫資源套上 ASSETS_BASE 所以還是絕對路徑
  *
  * 關於 src 內的資源引用
  * Vus SFC 在 template 模式下，可直接使用 <img src="@src/..." />
@@ -35,11 +36,12 @@ export default defineConfig(({ mode })=>{
   const ENV = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: ENV.APP_BASE || '/',
+    base: ENV.ASSETS_BASE || '/',
     define: {
       // 字串要包 ""，參考：https://cn.vitejs.dev/config/#define
+      VITE_APP_BASE: `"${ENV.APP_BASE || '/'}"`,
       VITE_API_BASE: `"${ENV.API_BASE || ENV.APP_BASE || '/'}"`,
-      VITE_APP_BASE: `"${ENV.APP_BASE || '/'}"`
+      VITE_ASSETS_BASE: `"${ENV.ASSETS_BASE || ENV.APP_BASE || '/'}"`,
     },
     plugins: [
       react(),
@@ -54,7 +56,7 @@ export default defineConfig(({ mode })=>{
     css: {
       preprocessorOptions: {
         sass: {
-          additionalData: `$VITE_APP_BASE: "${ENV.APP_BASE || '/'}" \n`
+          additionalData: `$VITE_APP_BASE: "${ENV.ASSETS_BASE || '/'}" \n`
         }
       },
       //  requireModuleExtension: true
@@ -65,14 +67,12 @@ export default defineConfig(({ mode })=>{
     build: {
       emptyOutDir: true,
       target: 'es2015',
+      manifest: true,
       rollupOptions: {
         output: {
-          // assetFileNames: 'assets/[name]-[hash].[ext]',
-          // chunkFileNames: 'chunks/[name]-[hash].js',
-          // entryFileNames: 'entrances/[name]-[hash].js',
-          assetFileNames: 'assets/[name].[ext]',
-          chunkFileNames: 'chunks/[name].js',
-          entryFileNames: 'entrances/[name].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]',
+          chunkFileNames: 'chunks/[name]-[hash].js',
+          entryFileNames: 'entrances/[name]-[hash].js',
         }
       }
     },
