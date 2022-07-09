@@ -2,7 +2,8 @@ import React, { Suspense, lazy, useState, useRef, useReducer, useEffect, useMemo
 import PropTypes from 'prop-types'
 
 // routes
-import { routes, Link, Outlet  } from '@src/routes'
+import { routes } from '@src/routes'
+import { Link, useParams, useSearchParams, createSearchParams, useNavigate, useLocation, matchRoutes } from 'react-router-dom'
 
 // store
 import { useStore } from '@src/store'
