@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
+import React, { Suspense, lazy, forwardRef, useState, useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 // routes
@@ -20,9 +20,9 @@ import styles from '@src/components/styles/index.module.sass'
 const { Lightbox } = components
 
 
-function Header(){
+function Header(prosp, ref){
   return (<Suspense fallback={null}>
-    <header className="py-4">
+    <header className="py-4" ref={ref}>
       <div className="text-center">This is Header</div>
       <div className="row justify-center">
         <div className="col-auto">
@@ -36,4 +36,4 @@ function Header(){
   </Suspense>)
 }
 
-export default Header
+export default forwardRef(Header)

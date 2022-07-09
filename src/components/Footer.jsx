@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
+import React, { Suspense, lazy, forwardRef, useState, useEffect, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 // routes
@@ -19,12 +19,12 @@ import styles from '@src/components/styles/index.module.sass'
 
 const { Lightbox } = components
 
-function Footer(){
+function Footer(props, ref){
   return (<Suspense fallback={null}>
-    <div className="py-4">
+    <div className="py-4" ref={ref}>
       <div className="text-center">This is Footer</div>
     </div>
   </Suspense>)
 }
 
-export default Footer
+export default forwardRef(Footer)
