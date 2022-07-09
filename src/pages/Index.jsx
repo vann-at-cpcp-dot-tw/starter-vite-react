@@ -1,7 +1,9 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
+import React, { Suspense, lazy, forwardRef, useState, useRef, useReducer, useEffect, useMemo, useCallback } from 'react'
+import PropTypes from 'prop-types'
 
 // routes
-import { routes, Link  } from '@src/routes'
+import { routes } from '@src/routes'
+import { Link, useParams, useSearchParams, createSearchParams, useNavigate, useLocation, matchRoutes } from 'react-router-dom'
 
 // store
 import { useStore } from '@src/store'
@@ -9,6 +11,7 @@ import useSrcAssets from '@src/use/useSrcAssets'
 
 // use
 import { useWindowSize } from 'react-use'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
 
 // methods & components
 import components from '@src/components'
@@ -17,6 +20,7 @@ import { isEmpty } from '@src/helpers'
 // styles
 // import styles from '@src/components/styles/index.module.sass'
 
+
 const { LayoutGeneral, Lightbox, LightboxClose } = components
 
 
@@ -24,7 +28,7 @@ export default function Index(){
   const srcAssets = useSrcAssets(['@src/assets/img/logo.png'])
   const store = useStore()
 
-  return (<Suspense fallback={<>333333333333333333333333</>}>
+  return (<Suspense fallback={<>...LOADING...</>}>
     <LayoutGeneral>
 
       <Lightbox id="helloLightbox">
