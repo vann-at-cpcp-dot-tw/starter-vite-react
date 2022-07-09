@@ -1,7 +1,9 @@
 import create from 'zustand'
+import { routes } from '@src/routes'
 
 const defaultStore = {
   lightbox: '',
+  menu: routes.filter((node)=>node?.meta?.menu)
 }
 
 export const useStore = create(set=>({

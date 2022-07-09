@@ -1,7 +1,4 @@
-import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
-import { BrowserRouter, Routes, Route, Link, Outlet, useRoutes } from 'react-router-dom'
-export { BrowserRouter, Routes, Route, Link, Outlet, useRoutes }
-
+import React, { Suspense, lazy } from 'react'
 import { toCamelCase } from '@src/helpers'
 
 const PageModules = import.meta.glob('@src/pages/**/*.jsx')

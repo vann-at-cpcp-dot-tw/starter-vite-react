@@ -1,7 +1,8 @@
 import React, { Suspense, lazy, useState, useEffect, useMemo, useCallback } from 'react'
 
 // routes
-import { BrowserRouter, Routes, routes, useRoutes } from '@src/routes'
+import { routes } from '@src/routes'
+import { BrowserRouter, useRoutes } from 'react-router-dom'
 
 function RoutesNodes(){
   const routeNodes = useRoutes(routes)
