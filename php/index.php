@@ -10,14 +10,9 @@ require_once('./helpers.php');
     <title></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <?= vite('index.html'); ?>
-
-    <base href="<?=ASSETS_BASE ?? '/'?>" />
-
   </head>
   <body>
     <div id="app"></div>
-
   </body>
 </html>
