@@ -24,8 +24,8 @@ const extendColors = [
 module.exports = {
   content: {
     content: [
-      './src/**/*.{html,js,jsx}',
-      './index.html',
+      // './src/**/*.{html,js,jsx}',
+      '**/*.{html,js,jsx,php}',
     ],
   },
   future: { },

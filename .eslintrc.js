@@ -6,10 +6,12 @@ module.exports = defineConfig({
   root: true,
   env: {
     browser: true,
+    amd: true,
+    node: true,
     es2021: true,
   },
   extends: [
-    // 'standard',
+    'eslint:recommended',
     'plugin:react/recommended',
     'plugin:tailwindcss/recommended',
   ],
