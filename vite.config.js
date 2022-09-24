@@ -69,6 +69,9 @@ export default defineConfig(({ mode })=>{
       target: 'es2015',
       manifest: true,
       rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, './src/main.js'),
+        },
         output: {
           assetFileNames: 'assets/[name]-[hash].[ext]',
           chunkFileNames: 'chunks/[name]-[hash].js',

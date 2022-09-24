@@ -25,7 +25,7 @@ module.exports = {
   content: {
     content: [
       // './src/**/*.{html,js,jsx}',
-      '**/*.{html,js,jsx,php}',
+      '**/*.{html,jsx,php}',
     ],
   },
   future: { },
