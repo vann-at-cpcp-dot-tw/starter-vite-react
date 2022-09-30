@@ -36,12 +36,12 @@ export default defineConfig(({ mode })=>{
   const ENV = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: ENV.ASSETS_BASE || '/',
+    base: ENV.ASSETS_BASE || '',
     define: {
       // 字串要包 ""，參考：https://cn.vitejs.dev/config/#define
-      VITE_APP_BASE: `"${ENV.APP_BASE || '/'}"`,
-      VITE_API_BASE: `"${ENV.API_BASE || ENV.APP_BASE || '/'}"`,
-      VITE_ASSETS_BASE: `"${ENV.ASSETS_BASE || ENV.APP_BASE || '/'}"`,
+      VITE_APP_BASE: `"${ENV.APP_BASE || ''}"`,
+      VITE_API_BASE: `"${ENV.API_BASE || ENV.APP_BASE || ''}"`,
+      VITE_ASSETS_BASE: `"${ENV.ASSETS_BASE || ENV.APP_BASE || ''}"`,
     },
     plugins: [
       react(),
@@ -56,7 +56,7 @@ export default defineConfig(({ mode })=>{
     css: {
       preprocessorOptions: {
         sass: {
-          additionalData: `$VITE_APP_BASE: "${ENV.ASSETS_BASE || '/'}" \n`
+          additionalData: `$VITE_ASSETS_BASE: "${ENV.ASSETS_BASE || ''}" \n`
         }
       },
       //  requireModuleExtension: true
