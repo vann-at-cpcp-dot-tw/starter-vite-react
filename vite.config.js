@@ -29,6 +29,7 @@ import path from 'path'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import legacy from '@vitejs/plugin-legacy'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode })=>{
@@ -47,11 +48,8 @@ export default defineConfig(({ mode })=>{
       react(),
       // legacy({
       //   targets: ['defaults', 'not IE 11']
-
-      //   // 如果要支援 ie11
-      //   // targets: ['ie >= 11'],
-      //   // additionalLegacyPolyfills: ['regenerator-runtime/runtime']
       // })
+      visualizer(),
     ],
     css: {
       preprocessorOptions: {
@@ -69,13 +67,13 @@ export default defineConfig(({ mode })=>{
       target: 'es2015',
       manifest: true,
       rollupOptions: {
-        input: {
-          main: path.resolve(__dirname, './src/main.js'),
-        },
+        // input: {
+        //   main: path.resolve(__dirname, './src/main.js'),
+        // },
         output: {
           assetFileNames: 'assets/[name]-[hash].[ext]',
           chunkFileNames: 'chunks/[name]-[hash].js',
-          entryFileNames: 'entrances/[name]-[hash].js',
+          entryFileNames: 'entry/[name]-[hash].js',
         }
       }
     },
